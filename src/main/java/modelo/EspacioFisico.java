@@ -9,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import repositorio.Identificable;
+
 
 @Entity
-public class EspacioFisico {
+public class EspacioFisico implements Identificable {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.TABLE)

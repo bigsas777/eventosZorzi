@@ -7,8 +7,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import repositorio.Identificable;
+
 @Entity
-public class Evento {
+public class Evento implements Identificable {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.TABLE)
