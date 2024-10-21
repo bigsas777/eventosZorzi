@@ -1,4 +1,4 @@
-package modelo;
+package utils;
 
 public enum Categoria {
 	ACADEMICO, 

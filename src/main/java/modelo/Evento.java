@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import repositorio.Identificable;
+import utils.Categoria;
 
 @Entity
 public class Evento implements Identificable {
