@@ -10,7 +10,7 @@ import org.eclipse.persistence.config.QueryHints;
 
 import utils.EntityManagerHelper;
 
-public abstract class RepositorioJPA<T extends Identificable> implements RepositorioString<T> {
+public abstract class RepositorioJPA<T extends Identificable> implements Repositorio<T, String> {
 	
 	public abstract Class<T> getClase();
 

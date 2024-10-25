@@ -5,20 +5,21 @@ import java.util.List;
 
 import modelo.EspacioFisico;
 import modelo.PuntoDeInteres;
-import utils.Estado;
+import repositorio.EntidadNoEncontrada;
+import repositorio.RepositorioException;
 
 public interface IServicioEspacios {
 	
-	String alta(String nombre, String propietario, int capacidad, String direccion, float longitud, float latitud, String descripcion);
+	String alta(String nombre, String propietario, int capacidad, String direccion, float longitud, float latitud, String descripcion) throws RepositorioException;
 	
-	void addPuntosDeInteres(String id, List<PuntoDeInteres> puntosDeInteres);
+	void addPuntosDeInteres(String id, List<PuntoDeInteres> puntosDeInteres) throws RepositorioException, EntidadNoEncontrada;
 	
-	String modifica(String id, String nombre, int capacidad, String descripcion);
+	void modifica(String id, String nombre, int capacidad, String descripcion) throws RepositorioException, EntidadNoEncontrada;
 	
-	Estado darDeBaja(String id);
+	void darDeBaja(String id) throws RepositorioException, EntidadNoEncontrada;
 	
-	Estado activar(String id);
+	void activar(String id) throws RepositorioException, EntidadNoEncontrada;
 	
-	List<EspacioFisico> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima);
+	List<EspacioFisico> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException;
 
 }

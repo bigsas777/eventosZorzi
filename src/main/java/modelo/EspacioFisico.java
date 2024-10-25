@@ -34,9 +34,21 @@ public class EspacioFisico implements Identificable {
 	//
 	
 	
-	// Auto-generated constructor, getters and setters
+	// Auto-generated constructors, getters and setters
 	public EspacioFisico() {
 		
+	}
+	public EspacioFisico(String nombre, String proprietario, int capacidad, String direccion, float longitud,
+			float latitud, String descripcion) {
+		super();
+		this.nombre = nombre;
+		this.proprietario = proprietario;
+		this.capacidad = capacidad;
+		this.direccion = direccion;
+		this.longitud = longitud;
+		this.latitud = latitud;
+		this.descripcion = descripcion;
+		this.estado = Estado.ACTIVO;
 	}
 	public String getId() {
 		return id;
