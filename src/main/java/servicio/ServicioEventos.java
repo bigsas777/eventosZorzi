@@ -1,7 +1,6 @@
 package servicio;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,14 +11,15 @@ import modelo.Ocupacion;
 import modelo.PuntoDeInteres;
 import repositorio.EntidadNoEncontrada;
 import repositorio.FactoriaRepositorios;
-import repositorio.Repositorio;
+import repositorio.RepositorioEspacioFisicoJPA;
+import repositorio.RepositorioEventoJPA;
 import repositorio.RepositorioException;
 import utils.Categoria;
 
 public class ServicioEventos implements IServicioEventos {
 	
-	private Repositorio<Evento, String> repositorioEventos = FactoriaRepositorios.getRepositorio(Evento.class);
-	private Repositorio<EspacioFisico, String> repositorioEspacios = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
+	private RepositorioEventoJPA repositorioEventos = FactoriaRepositorios.getRepositorio(Evento.class);
+	private RepositorioEspacioFisicoJPA repositorioEspacios = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
 
 	@Override
 	public String alta(String nombre, String descripcion, String organizador, Categoria categoria, LocalDateTime fechaInicio,
@@ -90,10 +90,10 @@ public class ServicioEventos implements IServicioEventos {
 	}
 
 	@Override
-	public List<EventoResumen> eventosDelMes(Month mes, int año) throws RepositorioException {
+	public List<EventoResumen> eventosDelMes(int mes, int año) throws RepositorioException {
 		LinkedList<EventoResumen> resultado = new LinkedList<>();
 		
-		for (Evento e : repositorioEventos.getAll())
+		for (Evento e : repositorioEventos.getEventosDelMes(mes, año))
 		{
 			EventoResumen er = new EventoResumen();
 			er.setNombre(e.getNombre());

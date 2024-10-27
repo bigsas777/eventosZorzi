@@ -7,14 +7,13 @@ import modelo.EspacioFisico;
 import modelo.PuntoDeInteres;
 import repositorio.EntidadNoEncontrada;
 import repositorio.FactoriaRepositorios;
-import repositorio.Repositorio;
 import repositorio.RepositorioEspacioFisicoJPA;
 import repositorio.RepositorioException;
 import utils.Estado;
 
 public class ServicioEspacios implements IServicioEspacios {
 	
-	private Repositorio<EspacioFisico, String> repositorio = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
+	private RepositorioEspacioFisicoJPA repositorio = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
 
 	@Override
 	public String alta(String nombre, String propietario, int capacidad, String direccion, float longitud,
@@ -77,7 +76,7 @@ public class ServicioEspacios implements IServicioEspacios {
 		
 		EspacioFisico espacioFisico = repositorio.getById(id);
 		
-		boolean tieneOcupacionActiva = ((RepositorioEspacioFisicoJPA) repositorio).tieneOcupacionActiva(id);
+		boolean tieneOcupacionActiva = repositorio.tieneOcupacionActiva(id);
 		
 		if (!tieneOcupacionActiva)
 		{
@@ -102,7 +101,7 @@ public class ServicioEspacios implements IServicioEspacios {
 
 	@Override
 	public List<EspacioFisico> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException {
-		return ((RepositorioEspacioFisicoJPA) repositorio).buscarEspaciosLibres(inicio, fin, capacidadMinima);
+		return repositorio.buscarEspaciosLibres(inicio, fin, capacidadMinima);
 	}
 
 }

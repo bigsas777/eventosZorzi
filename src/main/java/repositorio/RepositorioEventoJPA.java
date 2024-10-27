@@ -18,9 +18,9 @@ public class RepositorioEventoJPA extends RepositorioJPA<Evento>{
 	public List<Evento> getEventosDelMes(int mes, int año) throws RepositorioException {
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
-            String jpql = "SELECT e FROM Evento e WHERE MONTH(e.ocupacion.fechaInicio) = :mes " +
+            String queryString = "SELECT e FROM Evento e WHERE MONTH(e.ocupacion.fechaInicio) = :mes " +
                           "AND YEAR(e.ocupacion.fechaInicio) = :año";
-            Query query = em.createQuery(jpql);
+            Query query = em.createQuery(queryString);
             query.setParameter("mes", mes);
             query.setParameter("año", año);
             return query.getResultList();

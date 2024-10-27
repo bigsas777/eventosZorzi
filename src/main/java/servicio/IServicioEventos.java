@@ -1,7 +1,6 @@
 package servicio;
 
 import java.time.LocalDateTime;
-import java.time.Month;
 import java.util.List;
 
 import repositorio.EntidadNoEncontrada;
@@ -16,6 +15,6 @@ public interface IServicioEventos {
 	
 	void cancelar(String idEvento) throws RepositorioException, EntidadNoEncontrada;
 	
-	List<EventoResumen> eventosDelMes(Month mes, int año) throws RepositorioException;
+	List<EventoResumen> eventosDelMes(int mes, int año) throws RepositorioException;
 
 }
