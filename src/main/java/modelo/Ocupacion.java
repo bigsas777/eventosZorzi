@@ -16,12 +16,22 @@ public class Ocupacion {
 	private boolean activa;
 	
 	
-	// 
+	private boolean calculaActiva()
+	{
+		return this.fechaFin.isAfter(LocalDateTime.now()) ? true : false;
+	}
 	
 	
 	// Auto-generated constructor, getters and setters
 	public Ocupacion() {
 		
+	}
+	public Ocupacion(LocalDateTime fechaInicio, LocalDateTime fechaFin, EspacioFisico espacioFisico) {
+		super();
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.espacioFisico = espacioFisico;
+		this.activa = calculaActiva();
 	}
 	public LocalDateTime getFechaInicio() {
 		return fechaInicio;

@@ -8,7 +8,7 @@ public class PuntoDeInteres {
 
 	private String nombre;
 	private String descripcion;
-	private float distancia; // Da dove?? In che unità di misura??
+	private float distancia;
 	private String urlWikipedia;
 	
 	

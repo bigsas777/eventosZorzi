@@ -30,9 +30,20 @@ public class Evento implements Identificable {
 	// 
 	
 	
-	// Auto-generated constructor, getters and setters
+	// Auto-generated constructors, getters and setters
 	public Evento() {
 		
+	}
+	public Evento(String nombre, String descripcion, String organizador, int plazas, Categoria categoria,
+			Ocupacion ocupacion) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.organizador = organizador;
+		this.plazas = plazas;
+		this.cancelado = false;
+		this.categoria = categoria;
+		this.ocupacion = ocupacion;
 	}
 	public String getId() {
 		return id;
