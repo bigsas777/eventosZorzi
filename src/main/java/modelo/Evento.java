@@ -1,11 +1,15 @@
 package modelo;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import repositorio.Identificable;
 import utils.Categoria;
@@ -16,14 +20,21 @@ public class Evento implements Identificable {
 	@Id
     @GeneratedValue(strategy = GenerationType.TABLE)
 	private String id;
+	@Column(nullable = false)
 	private String nombre;
+	@Column(nullable = false, length = 1000)
 	private String descripcion;
+	@Column(nullable = false)
 	private String organizador;
+	@Column(nullable = false)
 	private int plazas;
+	@Column(nullable = false)
 	private boolean cancelado;
-	
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Categoria categoria;
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "ocupacion_id")
 	private Ocupacion ocupacion;
 	
 	

@@ -2,12 +2,17 @@ package modelo;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 import repositorio.Identificable;
 import utils.Estado;
@@ -19,15 +24,25 @@ public class EspacioFisico implements Identificable {
 	@Id
     @GeneratedValue(strategy = GenerationType.TABLE)
 	private String id;
+	@Column(nullable = false)
 	private String nombre;
+	@Column(nullable = false)
 	private String proprietario;
+	@Column(nullable = false)
 	private int capacidad;
+	@Column(nullable = false)
 	private String direccion;
+	@Column(nullable = false)
 	private float longitud;
+	@Column(nullable = false)
 	private float latitud;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "espacio_fisico_id")
 	private List<PuntoDeInteres> puntosDeInteres;
+	@Column(length = 1000, nullable = false)
 	private String descripcion;
 	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
 	private Estado estado;
 	
 	

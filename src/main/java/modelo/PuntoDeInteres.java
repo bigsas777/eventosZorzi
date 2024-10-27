@@ -1,14 +1,25 @@
 package modelo;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 
 @Entity
 public class PuntoDeInteres {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+	private String id;
+	@Column(nullable = false)
 	private String nombre;
+	@Column(nullable = false, length = 1000)
 	private String descripcion;
+	@Column(nullable = false)
 	private float distancia;
+	@Column(nullable = false, length = 500)
 	private String urlWikipedia;
 	
 	

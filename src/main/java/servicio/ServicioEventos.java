@@ -1,6 +1,7 @@
 package servicio;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -105,6 +106,7 @@ public class ServicioEventos implements IServicioEventos {
 			er.setNombreEspacio(ef.getNombre());
 			er.setDireccion(ef.getDireccion());
 			er.setPuntosDeInteres(ef.getPuntosDeInteres().stream()
+					.sorted(Comparator.comparing(PuntoDeInteres::getDistancia))
                     .map(PuntoDeInteres::getNombre)
                     .collect(Collectors.toList()));
 			
