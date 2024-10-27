@@ -27,7 +27,7 @@ public class PuntosDeInteres implements IPuntosDeInteres {
 	private static final String USERNAME = "bigsas777";
 
 	@Override
-	public List<PuntoDeInteres> getPuntosDeInteres(float longitud, float latitud) throws URISyntaxException, ParserConfigurationException, SAXException, IOException {
+	public List<PuntoDeInteres> getPuntosDeInteres(float latitud, float longitud) throws URISyntaxException, ParserConfigurationException, SAXException, IOException {
 		
 		List<PuntoDeInteres> puntosDeInteres = new ArrayList<PuntoDeInteres>();
 		

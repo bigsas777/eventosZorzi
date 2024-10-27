@@ -7,17 +7,18 @@ import modelo.EspacioFisico;
 import modelo.PuntoDeInteres;
 import repositorio.EntidadNoEncontrada;
 import repositorio.FactoriaRepositorios;
+import repositorio.Repositorio;
 import repositorio.RepositorioEspacioFisicoJPA;
 import repositorio.RepositorioException;
 import utils.Estado;
 
 public class ServicioEspacios implements IServicioEspacios {
 	
-	private RepositorioEspacioFisicoJPA repositorio = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
+	private Repositorio<EspacioFisico, String> repositorio = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
 
 	@Override
-	public String alta(String nombre, String propietario, int capacidad, String direccion, float longitud,
-			float latitud, String descripcion) throws RepositorioException {
+	public String alta(String nombre, String propietario, int capacidad, String direccion, float latitud, float longitud, 
+			String descripcion) throws RepositorioException {
 		
 		if (nombre == null || nombre.isEmpty())
 			throw new IllegalArgumentException("nombre: no debe ser nulo ni vacio");
@@ -76,14 +77,13 @@ public class ServicioEspacios implements IServicioEspacios {
 		
 		EspacioFisico espacioFisico = repositorio.getById(id);
 		
-		boolean tieneOcupacionActiva = repositorio.tieneOcupacionActiva(id);
+		boolean tieneOcupacionActiva = ((RepositorioEspacioFisicoJPA) repositorio).tieneOcupacionActiva(id);
 		
 		if (!tieneOcupacionActiva)
 		{
 			espacioFisico.setEstado(Estado.CERRADO_TEMPORALMENTE);
+			repositorio.update(espacioFisico);
 		}
-		
-		repositorio.update(espacioFisico);
 		
 	}
 
@@ -94,14 +94,16 @@ public class ServicioEspacios implements IServicioEspacios {
 		
 		EspacioFisico espacioFisico = repositorio.getById(id);
 		
-		espacioFisico.setEstado(Estado.ACTIVO);
-		
-		repositorio.update(espacioFisico);
+		if (espacioFisico.getEstado() == Estado.CERRADO_TEMPORALMENTE)
+		{
+			espacioFisico.setEstado(Estado.ACTIVO);
+			repositorio.update(espacioFisico);
+		}
 	}
 
 	@Override
 	public List<EspacioFisico> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException {
-		return repositorio.buscarEspaciosLibres(inicio, fin, capacidadMinima);
+		return ((RepositorioEspacioFisicoJPA) repositorio).buscarEspaciosLibres(inicio, fin, capacidadMinima);
 	}
 
 }

@@ -23,9 +23,6 @@ public class PuntoDeInteres {
 	private String urlWikipedia;
 	
 	
-	//
-	
-	
 	// Auto-generated constructor, getters and setters
 	public PuntoDeInteres() {
 		
@@ -53,6 +50,11 @@ public class PuntoDeInteres {
 	}
 	public void setUrlWikipedia(String urlWikipedia) {
 		this.urlWikipedia = urlWikipedia;
+	}
+	@Override
+	public String toString() {
+		return "PuntoDeInteres [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", distancia="
+				+ distancia + ", urlWikipedia=" + urlWikipedia + "]";
 	}
 	
 }

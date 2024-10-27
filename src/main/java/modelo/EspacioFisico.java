@@ -46,9 +46,6 @@ public class EspacioFisico implements Identificable {
 	private Estado estado;
 	
 	
-	//
-	
-	
 	// Auto-generated constructors, getters and setters
 	public EspacioFisico() {
 		
@@ -124,6 +121,12 @@ public class EspacioFisico implements Identificable {
 	}
 	public void setEstado(Estado estado) {
 		this.estado = estado;
+	}
+	@Override
+	public String toString() {
+		return "EspacioFisico [id=" + id + ", nombre=" + nombre + ", proprietario=" + proprietario + ", capacidad="
+				+ capacidad + ", direccion=" + direccion + ", longitud=" + longitud + ", latitud=" + latitud
+				+ ", puntosDeInteres=" + puntosDeInteres + ", descripcion=" + descripcion + ", estado=" + estado + "]";
 	}
 	
 }

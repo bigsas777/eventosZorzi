@@ -10,7 +10,7 @@ import repositorio.RepositorioException;
 
 public interface IServicioEspacios {
 	
-	String alta(String nombre, String propietario, int capacidad, String direccion, float longitud, float latitud, String descripcion) throws RepositorioException;
+	String alta(String nombre, String propietario, int capacidad, String direccion, float latitud, float longitud, String descripcion) throws RepositorioException;
 	
 	void addPuntosDeInteres(String id, List<PuntoDeInteres> puntosDeInteres) throws RepositorioException, EntidadNoEncontrada;
 	

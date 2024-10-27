@@ -34,7 +34,6 @@ public class Ocupacion {
 		return this.fechaFin.isAfter(LocalDateTime.now()) ? true : false;
 	}
 	
-	
 	// Auto-generated constructor, getters and setters
 	public Ocupacion() {
 		
@@ -69,6 +68,11 @@ public class Ocupacion {
 	}
 	public void setActiva(boolean activa) {
 		this.activa = activa;
+	}
+	@Override
+	public String toString() {
+		return "Ocupacion [id=" + id + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", espacioFisico="
+				+ espacioFisico + ", activa=" + activa + "]";
 	}
 	
 }

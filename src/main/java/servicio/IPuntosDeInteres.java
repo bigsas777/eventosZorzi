@@ -13,6 +13,6 @@ import modelo.PuntoDeInteres;
 
 public interface IPuntosDeInteres {
 	
-	List<PuntoDeInteres> getPuntosDeInteres(float longitud, float latitud) throws MalformedURLException, URISyntaxException, ParserConfigurationException, SAXException, IOException;
+	List<PuntoDeInteres> getPuntosDeInteres(float latitud, float longitud) throws MalformedURLException, URISyntaxException, ParserConfigurationException, SAXException, IOException;
 
 }

@@ -38,9 +38,6 @@ public class Evento implements Identificable {
 	private Ocupacion ocupacion;
 	
 	
-	// 
-	
-	
 	// Auto-generated constructors, getters and setters
 	public Evento() {
 		
@@ -103,6 +100,12 @@ public class Evento implements Identificable {
 	}
 	public void setOcupacion(Ocupacion ocupacion) {
 		this.ocupacion = ocupacion;
+	}
+	@Override
+	public String toString() {
+		return "Evento [id=" + id + ", nombre=" + nombre + ", descripcion=" + descripcion + ", organizador="
+				+ organizador + ", plazas=" + plazas + ", cancelado=" + cancelado + ", categoria=" + categoria
+				+ ", ocupacion=" + ocupacion + "]";
 	}
 	
 }
