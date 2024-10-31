@@ -37,11 +37,14 @@ public class RepositorioEspacioFisicoJPA extends RepositorioJPA<EspacioFisico> {
     public boolean tieneOcupacionActiva(String idEspacio) throws RepositorioException {
     	EntityManager em = EntityManagerHelper.getEntityManager();
         try {
-            String queryString = "SELECT COUNT(o) > 0 FROM Ocupacion o " +
-                          "WHERE o.espacioFisico.id = :idEspacio AND o.activa = true";
-            Query query = em.createQuery(queryString);
-            query.setParameter("idEspacio", idEspacio);
-            return (boolean) query.getSingleResult();
+        	String queryString = "SELECT COUNT(o) FROM Ocupacion o " +
+                    "WHERE o.espacioFisico.id = :idEspacio AND o.fechaFin > :fechaActual";
+			Query query = em.createQuery(queryString);
+			query.setParameter("idEspacio", idEspacio);
+			query.setParameter("fechaActual", LocalDateTime.now());
+			
+			Long count = (Long) query.getSingleResult();
+			return count > 0;
         } catch (Exception e) {
             throw new RepositorioException("Error al buscar espacios libres", e);
         } finally {

@@ -52,32 +52,40 @@ public class Test {
 		
 		// 1. Dar de alta un espacio fisico
 		String idEspacio = servicioEspacios.alta(nombre, propietario, capacidad, direccion, latitud, longitud, descripcion);
+		System.out.println("1. Dar de alta un espacio fisico");
 		System.out.println(repositorioEspacios.getById(idEspacio));
 		
 		// 2. Buscar puntos de interés dadas unas coordenadas
 		List<PuntoDeInteres> puntosDeInteres = servicioPuntos.getPuntosDeInteres(latitud, longitud);
+		System.out.println("2. Buscar puntos de interés dadas unas coordenadas");
 		puntosDeInteres.forEach(System.out::println);
 		
 		// 3. Asociar puntos de interes a un espacio
 		servicioEspacios.addPuntosDeInteres(idEspacio, puntosDeInteres);
+		System.out.println("3. Asociar puntos de interes a un espacio");
+		System.out.println(repositorioEspacios.getById(idEspacio));
 		
 		// 4. Modificar los detalles de un espacio
 		nombre += " Cordenons";
 		capacidad = 700;
 		descripcion += " Cordenons es mi ciudad en Italia.";
 		servicioEspacios.modifica(idEspacio, nombre, capacidad, descripcion);
+		System.out.println("4. Modificar los detalles de un espacio");
 		System.out.println(repositorioEspacios.getById(idEspacio));
 		
 		// 5. Dar de baja un espacio
 		servicioEspacios.darDeBaja(idEspacio);
+		System.out.println("5. Dar de baja un espacio");
 		System.out.println(repositorioEspacios.getById(idEspacio));
 		
 		// 6. Reactivar un espacio
 		servicioEspacios.activar(idEspacio);
+		System.out.println("6. Reactivar un espacio");
 		System.out.println(repositorioEspacios.getById(idEspacio));
 
 		// 7. Consultar los espacios libres
 		List<EspacioFisico> espaciosLibres = servicioEspacios.busqueda(fechaInicio, fechaFin, 40);
+		System.out.println("7. Consultar los espacios libres");
 		System.out.println(espaciosLibres);
 
 		// 8. Crear nuevos eventos
@@ -85,6 +93,7 @@ public class Test {
 		descripcion = "Se presentará el nuevo libro thriller de Stephen King.";
 		String organizador = "Luca Zorzi";
 		String idEvento = servicioEventos.alta(nombre, descripcion, organizador, Categoria.CULTURAL, fechaInicio, fechaFin, capacidad, idEspacio);
+		System.out.println("8. Crear nuevos eventos");
 		System.out.println(repositorioEventos.getById(idEvento));
 		
 		// 9. Modificar los datos de un evento
@@ -92,10 +101,12 @@ public class Test {
 		fechaInicio = LocalDateTime.of(2024, Month.DECEMBER, 17, 12, 0);
 		fechaFin = LocalDateTime.of(2024, Month.DECEMBER, 17, 19, 0);
 		servicioEventos.modifica(idEvento, descripcion, fechaInicio, fechaFin, capacidad-153, idEspacio);
+		System.out.println("9. Modificar los datos de un evento");
 		System.out.println(repositorioEventos.getById(idEvento));
 		
 		// 10. Cancelar un evento
 		servicioEventos.cancelar(idEvento);
+		System.out.println("10. Cancelar un evento");
 		repositorioEventos.getAll().forEach(System.out::println);
 		
 		// 11. Resumen de eventos por mes
@@ -105,7 +116,8 @@ public class Test {
 		fechaInicio = LocalDateTime.of(2024, Month.DECEMBER, 3, 9, 0);
 		fechaFin = LocalDateTime.of(2024, Month.DECEMBER, 4, 19, 0);
 		idEvento = servicioEventos.alta(nombre, descripcion, organizador, Categoria.ENTRETENIMIENTO, fechaInicio, fechaFin, capacidad, idEspacio);
-		// System.out.println(repositorioEventos.getById(idEvento));
+		System.out.println("11. Resumen de eventos por mes");
+		System.out.println(repositorioEventos.getById(idEvento));
 		servicioEventos.eventosDelMes(12, 2024).forEach(System.out::println);
 	}
 
