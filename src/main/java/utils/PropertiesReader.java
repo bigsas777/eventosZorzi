@@ -8,7 +8,12 @@ public class PropertiesReader {
     private Properties properties;
 
     public PropertiesReader(String propertyFileName) throws IOException {
-        InputStream is = getClass().getClassLoader()
+    	
+    	// DEBUG
+    	System.out.println(propertyFileName);
+    	System.out.println(getClass().getClassLoader().getResource(propertyFileName));
+    	
+    	InputStream is = getClass().getClassLoader()
             .getResourceAsStream(propertyFileName);
         this.properties = new Properties();
         this.properties.load(is);

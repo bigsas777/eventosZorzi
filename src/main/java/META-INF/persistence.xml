@@ -9,6 +9,8 @@
 
 		<class>modelo.Evento</class>
 		<class>modelo.EspacioFisico</class>
+		<class>modelo.Ocupacion</class>
+		<class>modelo.PuntoDeInteres</class>
 		<properties>
 
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
