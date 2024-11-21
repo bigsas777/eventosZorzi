@@ -3,6 +3,7 @@ package servicio;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import dto.EspacioFisicoDTO;
 import modelo.EspacioFisico;
 import modelo.PuntoDeInteres;
 import repositorio.EntidadNoEncontrada;
@@ -104,6 +105,14 @@ public class ServicioEspacios implements IServicioEspacios {
 	@Override
 	public List<EspacioFisico> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException {
 		return ((RepositorioEspacioFisicoJPA) repositorio).buscarEspaciosLibres(inicio, fin, capacidadMinima);
+	}
+	
+	private EspacioFisicoDTO transformToDTO(EspacioFisico ef)
+	{
+		EspacioFisicoDTO espacioFisicoDTO = new EspacioFisicoDTO(ef.getId(), ef.getNombre(), ef.getCapacidad(), 
+				ef.getDireccion(), ef.getDescripcion(), ef.getProprietario(), ef.getEstado());
+		
+		return espacioFisicoDTO;
 	}
 
 }

@@ -7,7 +7,7 @@
  	<groupId>zorzi.luca</groupId>
  	<artifactId>eventos.zorzi</artifactId>
  	<version>0.0.1-SNAPSHOT</version>
- 	<packaging>jar</packaging>
+ 	<packaging>war</packaging>
   
  	<properties>
 		<maven.compiler.target>1.8</maven.compiler.target>
@@ -19,13 +19,45 @@
 
 
 	<dependencies>
+		<!-- Primefaces -->
+		<dependency>
+		    <groupId>org.primefaces</groupId>
+		    <artifactId>primefaces</artifactId>
+		    <version>13.0.10</version>
+		</dependency>
+		<!-- JSF -->
+		<dependency>
+		    <groupId>org.glassfish</groupId>
+		    <artifactId>javax.faces</artifactId>
+		    <version>2.3.9</version>
+		</dependency>
+		<dependency>
+		    <groupId>javax.enterprise</groupId>
+		    <artifactId>cdi-api</artifactId>
+		    <version>2.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.jboss.weld.servlet</groupId>
+		    <artifactId>weld-servlet-shaded</artifactId>
+		    <version>3.1.9.Final</version>          
+		</dependency>
+		<!-- Jetty -->
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-servlets</artifactId>
+		    <version>10.0.18</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.eclipse.jetty</groupId>
+		    <artifactId>jetty-server</artifactId>
+		    <version>10.0.18</version>
+		</dependency>
 		<!-- JPA-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.28</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
@@ -35,26 +67,6 @@
 			<groupId>javax.persistence</groupId>
 			<artifactId>javax.persistence-api</artifactId>
 			<version>2.2</version>
-		</dependency>
-
-
-		<!-- JAXB -->
-
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.glassfish.jaxb</groupId>
-			<artifactId>jaxb-runtime</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
 		</dependency>
 		<!-- test lib -->
 		<dependency>
@@ -143,6 +155,12 @@
 	</dependencyManagement>
 
 	<build>
-		<pluginManagement></pluginManagement>
+	    <plugins>
+	        <plugin>
+	            <groupId>org.eclipse.jetty</groupId>
+	            <artifactId>jetty-maven-plugin</artifactId>
+	            <version>10.0.18</version>
+	        </plugin>
+	    </plugins>
 	</build>
 </project>

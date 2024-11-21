@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+	<f:view locale="#{activeLocale.actual}">
+		<h:head>
+		    <meta charset="utf-8" />
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		    <title>Homepage - EventosZorzi</title>
+		</h:head>
+		<h:body style="background-image: url('resources/concert.jpg'); background-size: cover; background-repeat: none;">
+		
+			<h:form id="navbarForm">
+			    <p:menubar>
+			        <!-- Logo o titolo -->
+			        <p:menuitem value="EventosZorzi" style="font-weight: bold; font-size: 20px; pointer-events: none;" />
+			
+			        <!-- Dropdown per la selezione della lingua -->
+			        <p:menuitem>
+			            <p:selectOneMenu id="languageMenu" value="#{activeLocale.languageTag}">
+			                <f:selectItems value="#{activeLocale.localesDisponibles}" var="l"
+			                    itemValue="#{l.toLanguageTag()}"
+			                    itemLabel="#{l.getDisplayLanguage(l)}">
+			                </f:selectItems>
+			                <f:ajax listener="#{activeLocale.reload}" render="@form" />
+			            </p:selectOneMenu>
+			        </p:menuitem>
+			
+			        <!-- Messaggio informativo sul ruolo -->
+			        <p:menuitem style="margin-left: auto; pointer-events: none; color: gray;" 
+			                    value="#{text.Rol}: #{userSessionBean.rolTemporaneo eq null ? 'null' : userSessionBean.rolTemporaneo}" />
+			
+			        <!-- Pulsante Logout -->
+			        <p:menuitem value="Logout" 
+			                    action="#{userSessionBean.logout()}" 
+			                    style="color: red;" />
+			    </p:menubar>
+			</h:form>
+
+
+
+
+			
+		    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center;">
+		    	<!-- <h:outputText value="#{userSessionBean != null ? 'Bean found' : 'Bean not found'}" /><br />
+		    	<h:outputText id="displayRol" value="Rol: #{userSessionBean.rolTemporaneo}" />  -->
+			    
+			    <div style="background-color: rgba(255, 255, 255, 0.65); text-align: center; padding: 20px; border-radius: 6px;">
+		        	<h:outputText value="#{text.Bienvenida}!" 
+		        		styleClass="ui-widget ui-widget-header" 
+		        		style="font-size: 2em; font-weight: bold;"/><br />
+		        	<h:outputText value="#{text.sub_bienvenida}."
+		        		styleClass="ui-widget ui-widget-header" 
+		        		style="font-weight: bold; color: #525252" />
+		        </div>
+		        
+		        <div>
+		        	<p:commandButton value="#{text.acceso_prop}"
+		                             oncomplete="PF('dlg').show()"
+		                             actionListener="#{userSessionBean.setRolTemporaneo('propietario')}" 
+		                             styleClass="ui-button-raised ui-button-secondary" 
+		                             update="loginDialog navbarForm" 
+		                             style="margin: 10px;" />
+		            <p:commandButton value="#{text.acceso_org}"
+		                             oncomplete="PF('dlg').show()"
+		                             actionListener="#{userSessionBean.setRolTemporaneo('organizador')}" 
+		                             styleClass="ui-button-raised ui-button-secondary" 
+		                             update="loginDialog navbarForm" 
+		                             style="margin: 10px;" />
+		        </div>
+		        
+		        <!-- Dialogo per il form di accesso -->
+			    <p:dialog id="loginDialog" widgetVar="dlg" modal="true" draggable="false" resizable="false" 
+			    	header="#{userSessionBean.rolTemporaneo eq 'propietario' ? text['acceso_prop'] : text['acceso_org']}">
+			        <h:form id="loginForm">
+			            <h:outputLabel for="nombre" value="#{text.nombre_completo}:" /><br />
+			            <p:inputText id="nombre" value="#{userSessionBean.nombre}" />
+			            
+			            <p:commandButton value="#{text.Acceso}"
+			                             action="#{userSessionBean.login()}"
+			                             oncomplete="PF('dlg').hide()"
+			                             update="@form" style="margin: 10px;"/>
+			        </h:form>
+			    </p:dialog>
+		    </div>
+		</h:body>
+	</f:view>
+</html>
