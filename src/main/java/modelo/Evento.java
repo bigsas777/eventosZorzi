@@ -1,5 +1,7 @@
 package modelo;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Transient;
 
 import repositorio.Identificable;
 import utils.Categoria;
@@ -37,13 +40,21 @@ public class Evento implements Identificable {
     @JoinColumn(name = "ocupacion_id")
 	private Ocupacion ocupacion;
 	
+	// Attributes only for the creation of an Ocupacion
+	@Transient
+	private LocalDateTime fechaInicio;
+	@Transient
+	private LocalDateTime fechaFin;
+	@Transient
+	private EspacioFisico espacioFisico;
+	
 	
 	// Auto-generated constructors, getters and setters
 	public Evento() {
 		
 	}
-	public Evento(String nombre, String descripcion, String organizador, int plazas, Categoria categoria,
-			Ocupacion ocupacion) {
+	public Evento(String nombre, String descripcion, String organizador, int plazas, Categoria categoria, 
+			LocalDateTime fechaInicio, LocalDateTime fechaFin, EspacioFisico espacioFisico) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -51,7 +62,8 @@ public class Evento implements Identificable {
 		this.plazas = plazas;
 		this.cancelado = false;
 		this.categoria = categoria;
-		this.ocupacion = ocupacion;
+		Ocupacion o = new Ocupacion(fechaInicio, fechaFin, espacioFisico);
+		this.ocupacion = o;
 	}
 	public String getId() {
 		return id;

@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 
 import repositorio.Identificable;
@@ -36,10 +37,11 @@ public class EspacioFisico implements Identificable {
 	private float longitud;
 	@Column(nullable = false)
 	private float latitud;
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "espacio_fisico_id")
 	private List<PuntoDeInteres> puntosDeInteres;
-	@Column(length = 1000, nullable = false)
+	@Column(nullable = false)
+	@Lob
 	private String descripcion;
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)

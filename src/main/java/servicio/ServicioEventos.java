@@ -41,8 +41,11 @@ public class ServicioEventos implements IServicioEventos {
 			throw new IllegalArgumentException("idEspacioFisico: no debe ser nulo ni vacio");
 		
 		EspacioFisico ef = repositorioEspacios.getById(idEspacioFisico);
-		Ocupacion o = new Ocupacion(fechaInicio, fechaFin, ef);
-		Evento e = new Evento(nombre, descripcion, organizador, plazas, categoria, o);
+		
+		if (plazas > ef.getCapacidad())
+			throw new IllegalArgumentException("plazas: no debe superar la capacidad del espacio físico");
+		
+		Evento e = new Evento(nombre, descripcion, organizador, plazas, categoria, fechaInicio, fechaFin, ef);
 		
 		return repositorioEventos.add(e);
 	}
@@ -62,13 +65,19 @@ public class ServicioEventos implements IServicioEventos {
 		if (idEspacioFisico == null || idEspacioFisico.isEmpty())
 			throw new IllegalArgumentException("idEspacioFisico: no debe ser nulo ni vacio");
 		
+		
+		EspacioFisico ef = repositorioEspacios.getById(idEspacioFisico);
+		
+		if (plazas > ef.getCapacidad())
+			throw new IllegalArgumentException("plazas: no debe superar la capacidad del espacio físico");
+		
 		Evento e = repositorioEventos.getById(idEvento);
 		Ocupacion o = e.getOcupacion();
 		
 		e.setDescripcion(descripcion);
 		o.setFechaInicio(fechaInicio);
 		o.setFechaFin(fechaFin);
-		o.setEspacioFisico(repositorioEspacios.getById(idEspacioFisico));
+		o.setEspacioFisico(ef);
 		e.setOcupacion(o);
 		e.setPlazas(plazas);
 		
@@ -81,13 +90,9 @@ public class ServicioEventos implements IServicioEventos {
 		
 		Evento e = repositorioEventos.getById(idEvento);
 		
-		Ocupacion o = e.getOcupacion();
-		o.setActiva(false);
-		e.setOcupacion(o);
+		e.setOcupacion(null);
 		
 		repositorioEventos.update(e);
-		repositorioEventos.delete(e);
-		
 	}
 
 	@Override

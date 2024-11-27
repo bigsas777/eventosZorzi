@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 
 @Entity
@@ -15,11 +16,13 @@ public class PuntoDeInteres {
 	private String id;
 	@Column(nullable = false)
 	private String nombre;
-	@Column(nullable = false, length = 1000)
+	@Column(nullable = false)
+	@Lob
 	private String descripcion;
 	@Column(nullable = false)
 	private float distancia;
-	@Column(nullable = false, length = 500)
+	@Column(nullable = false)
+	@Lob
 	private String urlWikipedia;
 	
 	

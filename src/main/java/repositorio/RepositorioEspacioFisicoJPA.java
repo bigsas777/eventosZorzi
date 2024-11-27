@@ -20,6 +20,7 @@ public class RepositorioEspacioFisicoJPA extends RepositorioJPA<EspacioFisico> {
         EntityManager em = EntityManagerHelper.getEntityManager();
         try {
             String queryString = "SELECT e FROM EspacioFisico e WHERE e.capacidad >= :capacidad " +
+            			  "AND e.estado = 'ACTIVO' " + 
                           "AND e.id NOT IN (SELECT o.espacioFisico.id FROM Ocupacion o " +
                           "WHERE (o.fechaInicio <= :fin AND o.fechaFin >= :inicio))";
             Query query = em.createQuery(queryString);
