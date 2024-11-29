@@ -28,7 +28,7 @@ public class EspacioFisico implements Identificable {
 	@Column(nullable = false)
 	private String nombre;
 	@Column(nullable = false)
-	private String proprietario;
+	private String propietario;
 	@Column(nullable = false)
 	private int capacidad;
 	@Column(nullable = false)
@@ -52,11 +52,11 @@ public class EspacioFisico implements Identificable {
 	public EspacioFisico() {
 		
 	}
-	public EspacioFisico(String nombre, String proprietario, int capacidad, String direccion, float longitud,
+	public EspacioFisico(String nombre, String propietario, int capacidad, String direccion, float longitud,
 			float latitud, String descripcion) {
 		super();
 		this.nombre = nombre;
-		this.proprietario = proprietario;
+		this.propietario = propietario;
 		this.capacidad = capacidad;
 		this.direccion = direccion;
 		this.longitud = longitud;
@@ -76,11 +76,11 @@ public class EspacioFisico implements Identificable {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getProprietario() {
-		return proprietario;
+	public String getPropietario() {
+		return propietario;
 	}
-	public void setProprietario(String proprietario) {
-		this.proprietario = proprietario;
+	public void setPropietario(String propietario) {
+		this.propietario = propietario;
 	}
 	public int getCapacidad() {
 		return capacidad;
@@ -126,7 +126,7 @@ public class EspacioFisico implements Identificable {
 	}
 	@Override
 	public String toString() {
-		return "EspacioFisico [id=" + id + ", nombre=" + nombre + ", proprietario=" + proprietario + ", capacidad="
+		return "EspacioFisico [id=" + id + ", nombre=" + nombre + ", proprietario=" + propietario + ", capacidad="
 				+ capacidad + ", direccion=" + direccion + ", longitud=" + longitud + ", latitud=" + latitud
 				+ ", puntosDeInteres=" + puntosDeInteres + ", descripcion=" + descripcion + ", estado=" + estado + "]";
 	}

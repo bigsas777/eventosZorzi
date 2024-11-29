@@ -3,6 +3,7 @@ package servicio;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import dto.EspacioFisicoDTO;
 import modelo.EspacioFisico;
 import modelo.PuntoDeInteres;
 import repositorio.EntidadNoEncontrada;
@@ -21,5 +22,9 @@ public interface IServicioEspacios {
 	void activar(String id) throws RepositorioException, EntidadNoEncontrada;
 	
 	List<EspacioFisico> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException;
+	
+	public List<EspacioFisicoDTO> getAll() throws RepositorioException;
+	
+	public List<EspacioFisicoDTO> getByOwner(String propietario) throws RepositorioException;
 
 }

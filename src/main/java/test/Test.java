@@ -50,6 +50,64 @@ public class Test {
 		LocalDateTime fechaFin = LocalDateTime.of(2024, Month.DECEMBER, 10, 19, 0);
 		
 		
+		String nombre1 = "Palasport Forum";
+		String propietario1 = "Comune di Pordenone";
+		int capacidad1 = 2500;
+		String direccion1 = "Viale Treviso, 1";
+		float latitud1 = 45.963852f;
+		float longitud1 = 12.660152f;
+		String descripcion1 = "El Palasport Forum es una estructura polivalente para eventos deportivos y culturales.";
+		LocalDateTime fechaInicio1 = LocalDateTime.of(2024, Month.DECEMBER, 15, 9, 0);
+		LocalDateTime fechaFin1 = LocalDateTime.of(2024, Month.DECEMBER, 15, 18, 0);
+
+		String nombre2 = "Auditorium Concordia";
+		String propietario2 = "Comune di San Vito al Tagliamento";
+		int capacidad2 = 800;
+		String direccion2 = "Piazza della Repubblica, 8";
+		float latitud2 = 45.903582f;
+		float longitud2 = 12.841092f;
+		String descripcion2 = "Auditorium Concordia es una sede para conciertos y presentaciones teatrales.";
+		LocalDateTime fechaInicio2 = LocalDateTime.of(2024, Month.DECEMBER, 20, 16, 0);
+		LocalDateTime fechaFin2 = LocalDateTime.of(2024, Month.DECEMBER, 20, 23, 0);
+
+		String nombre3 = "Sala Polifunzionale Enrico Mattei";
+		String propietario3 = "Comune di Pasiano di Pordenone";
+		int capacidad3 = 400;
+		String direccion3 = "Via Roma, 12";
+		float latitud3 = 45.863125f;
+		float longitud3 = 12.628741f;
+		String descripcion3 = "La Sala Polifunzionale Enrico Mattei es ideal para reuniones y conferencias.";
+		LocalDateTime fechaInicio3 = LocalDateTime.of(2024, Month.DECEMBER, 12, 10, 0);
+		LocalDateTime fechaFin3 = LocalDateTime.of(2024, Month.DECEMBER, 12, 17, 0);
+
+		String nombre4 = "Teatro Verdi";
+		String propietario4 = "Comune di Gorizia";
+		int capacidad4 = 1200;
+		String direccion4 = "Corso Italia, 35";
+		float latitud4 = 45.942015f;
+		float longitud4 = 13.621995f;
+		String descripcion4 = "El Teatro Verdi es un lugar histórico para eventos teatrales y operísticos.";
+		LocalDateTime fechaInicio4 = LocalDateTime.of(2024, Month.DECEMBER, 25, 20, 0);
+		LocalDateTime fechaFin4 = LocalDateTime.of(2024, Month.DECEMBER, 25, 23, 30);
+
+		String nombre5 = "Centro Congressi Fiera di Pordenone";
+		String propietario5 = "Fiera di Pordenone S.p.A.";
+		int capacidad5 = 3500;
+		String direccion5 = "Viale Treviso, 3";
+		float latitud5 = 45.959627f;
+		float longitud5 = 12.652154f;
+		String descripcion5 = "El Centro Congressi es un moderno espacio para ferias y eventos corporativos.";
+		LocalDateTime fechaInicio5 = LocalDateTime.of(2024, Month.DECEMBER, 18, 8, 0);
+		LocalDateTime fechaFin5 = LocalDateTime.of(2024, Month.DECEMBER, 18, 20, 0);
+		
+		String idEspacio1 = servicioEspacios.alta(nombre1, propietario1, capacidad1, direccion1, latitud1, longitud1, descripcion1);
+		String idEspacio2 = servicioEspacios.alta(nombre2, propietario2, capacidad2, direccion2, latitud2, longitud2, descripcion2);
+		String idEspacio3 = servicioEspacios.alta(nombre3, propietario3, capacidad3, direccion3, latitud3, longitud3, descripcion3);
+		String idEspacio4 = servicioEspacios.alta(nombre4, propietario4, capacidad4, direccion4, latitud4, longitud4, descripcion4);
+		String idEspacio5 = servicioEspacios.alta(nombre5, propietario5, capacidad5, direccion5, latitud5, longitud5, descripcion5);
+
+		
+		
 		// 1. Dar de alta un espacio fisico
 		String idEspacio = servicioEspacios.alta(nombre, propietario, capacidad, direccion, latitud, longitud, descripcion);
 		System.out.println("1. Dar de alta un espacio fisico");

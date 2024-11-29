@@ -1,21 +1,22 @@
 package servicio;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import dto.EspacioFisicoDTO;
 import modelo.EspacioFisico;
 import modelo.PuntoDeInteres;
 import repositorio.EntidadNoEncontrada;
 import repositorio.FactoriaRepositorios;
-import repositorio.Repositorio;
-import repositorio.RepositorioEspacioFisicoJPA;
+import repositorio.RepositorioAdHocEspacioFisico;
 import repositorio.RepositorioException;
 import utils.Estado;
 
 public class ServicioEspacios implements IServicioEspacios {
 	
-	private Repositorio<EspacioFisico, String> repositorio = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
+	private RepositorioAdHocEspacioFisico repositorio = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
 
 	@Override
 	public String alta(String nombre, String propietario, int capacidad, String direccion, float latitud, float longitud, 
@@ -78,7 +79,7 @@ public class ServicioEspacios implements IServicioEspacios {
 		
 		EspacioFisico espacioFisico = repositorio.getById(id);
 		
-		boolean tieneOcupacionActiva = ((RepositorioEspacioFisicoJPA) repositorio).tieneOcupacionActiva(id);
+		boolean tieneOcupacionActiva = repositorio.tieneOcupacionActiva(id);
 		
 		if (!tieneOcupacionActiva)
 		{
@@ -104,13 +105,35 @@ public class ServicioEspacios implements IServicioEspacios {
 
 	@Override
 	public List<EspacioFisico> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException {
-		return ((RepositorioEspacioFisicoJPA) repositorio).buscarEspaciosLibres(inicio, fin, capacidadMinima);
+		return repositorio.buscarEspaciosLibres(inicio, fin, capacidadMinima);
+	}
+	
+	@Override
+	public List<EspacioFisicoDTO> getAll() throws RepositorioException {
+		
+		List<EspacioFisico> all = repositorio.getAll();
+		
+		List<EspacioFisicoDTO> allDto = new ArrayList<EspacioFisicoDTO>();
+		
+		for (EspacioFisico ef : all)
+		{
+			allDto.add(transformToDTO(ef));
+		}
+		
+		return allDto;
+	}
+	
+	@Override
+	public List<EspacioFisicoDTO> getByOwner(String propietario) throws RepositorioException {
+		
+		return getAll().stream().filter(espacio -> propietario.equals(espacio.getPropietario())).collect(Collectors.toList());
+		
 	}
 	
 	private EspacioFisicoDTO transformToDTO(EspacioFisico ef)
 	{
 		EspacioFisicoDTO espacioFisicoDTO = new EspacioFisicoDTO(ef.getId(), ef.getNombre(), ef.getCapacidad(), 
-				ef.getDireccion(), ef.getDescripcion(), ef.getProprietario(), ef.getEstado());
+				ef.getDireccion(), ef.getDescripcion(), ef.getPropietario(), ef.getEstado());
 		
 		return espacioFisicoDTO;
 	}

@@ -9,19 +9,19 @@ public class EspacioFisicoDTO {
 	private int capacidad;
 	private String direccion;
 	private String descripcion;
-	private String priopietario;
+	private String propietario;
 	private Estado estado;
 	
 	
 	public EspacioFisicoDTO(String id, String nombre, int capacidad, String direccion, String descripcion,
-			String priopietario, Estado estado) {
+			String propietario, Estado estado) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.capacidad = capacidad;
 		this.direccion = direccion;
 		this.descripcion = descripcion;
-		this.priopietario = priopietario;
+		this.propietario = propietario;
 		this.estado = estado;
 	}
 
@@ -65,12 +65,12 @@ public class EspacioFisicoDTO {
 		this.descripcion = descripcion;
 	}
 
-	public String getPriopietario() {
-		return priopietario;
+	public String getPropietario() {
+		return propietario;
 	}
 
-	public void setPriopietario(String priopietario) {
-		this.priopietario = priopietario;
+	public void setPropietario(String propietario) {
+		this.propietario = propietario;
 	}
 
 	public Estado getEstado() {

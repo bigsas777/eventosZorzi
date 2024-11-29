@@ -12,15 +12,15 @@ import modelo.Ocupacion;
 import modelo.PuntoDeInteres;
 import repositorio.EntidadNoEncontrada;
 import repositorio.FactoriaRepositorios;
-import repositorio.Repositorio;
-import repositorio.RepositorioEventoJPA;
+import repositorio.RepositorioAdHocEspacioFisico;
+import repositorio.RepositorioAdHocEvento;
 import repositorio.RepositorioException;
 import utils.Categoria;
 
 public class ServicioEventos implements IServicioEventos {
 	
-	private Repositorio<Evento, String> repositorioEventos = FactoriaRepositorios.getRepositorio(Evento.class);
-	private Repositorio<EspacioFisico, String> repositorioEspacios = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
+	private RepositorioAdHocEvento repositorioEventos = FactoriaRepositorios.getRepositorio(Evento.class);
+	private RepositorioAdHocEspacioFisico repositorioEspacios = FactoriaRepositorios.getRepositorio(EspacioFisico.class);
 
 	@Override
 	public String alta(String nombre, String descripcion, String organizador, Categoria categoria, LocalDateTime fechaInicio,
@@ -99,7 +99,7 @@ public class ServicioEventos implements IServicioEventos {
 	public List<EventoResumen> eventosDelMes(int mes, int año) throws RepositorioException {
 		LinkedList<EventoResumen> resultado = new LinkedList<>();
 		
-		for (Evento e : ((RepositorioEventoJPA) repositorioEventos).getEventosDelMes(mes, año))
+		for (Evento e : repositorioEventos.getEventosDelMes(mes, año))
 		{
 			EventoResumen er = new EventoResumen();
 			er.setNombre(e.getNombre());
