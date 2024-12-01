@@ -21,6 +21,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.xml.sax.SAXException;
 
+import dto.EspacioFisicoDTO;
 import modelo.EspacioFisico;
 import modelo.Evento;
 import modelo.PuntoDeInteres;
@@ -142,7 +143,7 @@ public class Test {
 		System.out.println(repositorioEspacios.getById(idEspacio));
 
 		// 7. Consultar los espacios libres
-		List<EspacioFisico> espaciosLibres = servicioEspacios.busqueda(fechaInicio, fechaFin, 40);
+		List<EspacioFisicoDTO> espaciosLibres = servicioEspacios.busqueda(fechaInicio, fechaFin, 40);
 		System.out.println("7. Consultar los espacios libres");
 		System.out.println(espaciosLibres);
 

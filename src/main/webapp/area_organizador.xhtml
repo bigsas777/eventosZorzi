@@ -42,6 +42,48 @@
 		        <h:outputText value="#{text.bienvenida_org}, #{userSessionBean.nombre}!"
 		        	styleClass="ui-widget ui-widget-header" 
 		        	style="font-size: 2em; font-weight: bold; padding: 15px;"/>
+		        	
+		        <div id="busqeda" style="margin: 20px 15px 10px 15px;">
+		        	<p:outputLabel for="range" value="#{text.Fechas}:" style="margin-right: 7px;" />
+		        	<p:datePicker id="range" selectionMode="range" value="#{organizadorBean.rangoFechas}" readonlyInput="true" 
+		        		hideOnRangeSelection="true" style="margin-right: 25px;" />
+		        	
+		        	<p:outputLabel for="capacidadMinima" value="#{text.CapMin}:" style="margin-right: 7px;" />
+		        	<p:inputNumber id="capacidadMinima" value="#{organizadorBean.capacidadMinima}" minValue="1" decimalPlaces="0" 
+		        		style="margin-right: 40px;" />
+		        	
+		        	<p:commandButton value="#{text.Buscar}" icon="pi pi-search" action="#{organizadorBean.busquedaEspacios()}" update="espacios" />
+		        </div>
+		        	
+		        <h:form id="espacios" style="margin: 20px 2px 0px 2px;">
+			        <p:dataTable var="espacio" value="#{organizadorBean.espaciosDisponibles}">
+			            <p:column headerText="#{text.Nombre}">
+			                <h:outputText value="#{espacio.nombre}" />
+			            </p:column>
+			
+			            <p:column headerText="#{text.Capacidad}">
+			                <h:outputText value="#{espacio.capacidad}" />
+			            </p:column>
+			
+			            <p:column headerText="#{text.Direccion}">
+			                <h:outputText value="#{espacio.direccion}" />
+			            </p:column>
+			            
+			            <p:column headerText="#{text.Descripcion}">
+			            	<h:outputText value="#{espacio.descripcion}" />
+			            </p:column>
+			            
+			            <p:column headerText="#{text.Propietario}">
+			            	<h:outputText value="#{espacio.propietario}" />
+			            </p:column>
+			            
+			            <p:column headerText="#{text.AddEvento}">
+			                <p:commandButton icon="pi pi-plus"
+                             action="#{organizadorBean.addEvento()}"
+                             update="espacios" />
+			            </p:column>
+			        </p:dataTable>
+				</h:form>
 		    </div>
 		</h:body>
 	</f:view>

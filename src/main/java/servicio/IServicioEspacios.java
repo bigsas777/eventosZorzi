@@ -21,7 +21,7 @@ public interface IServicioEspacios {
 	
 	void activar(String id) throws RepositorioException, EntidadNoEncontrada;
 	
-	List<EspacioFisico> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException;
+	List<EspacioFisicoDTO> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException;
 	
 	public List<EspacioFisicoDTO> getAll() throws RepositorioException;
 	

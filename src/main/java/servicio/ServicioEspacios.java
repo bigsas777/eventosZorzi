@@ -104,8 +104,18 @@ public class ServicioEspacios implements IServicioEspacios {
 	}
 
 	@Override
-	public List<EspacioFisico> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException {
-		return repositorio.buscarEspaciosLibres(inicio, fin, capacidadMinima);
+	public List<EspacioFisicoDTO> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException {
+		
+		List<EspacioFisico> espaciosDisponibles = repositorio.buscarEspaciosLibres(inicio, fin, capacidadMinima);
+		
+		List<EspacioFisicoDTO> espaciosDisponiblesDTO = new ArrayList<EspacioFisicoDTO>();
+		
+		for (EspacioFisico ef : espaciosDisponibles)
+		{
+			espaciosDisponiblesDTO.add(transformToDTO(ef));
+		}
+		
+		return espaciosDisponiblesDTO;
 	}
 	
 	@Override
