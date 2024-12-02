@@ -25,16 +25,6 @@ public class OrganizadorBean implements Serializable {
 	private int capacidadMinima;
 	private List<LocalDate> rangoFechas;
 	private List<EspacioFisicoDTO> espaciosDisponibles;
-	private Date dateTest;
-	
-	
-	public Date getDateTest() {
-		return dateTest;
-	}
-
-	public void setDateTest(Date dateTest) {
-		this.dateTest = dateTest;
-	}
 
 	public OrganizadorBean() {
 		servicioEspacios = FactoriaServicios.getServicio(IServicioEspacios.class);
@@ -47,10 +37,9 @@ public class OrganizadorBean implements Serializable {
 	
 	public void busquedaEspacios() throws RepositorioException {
 		
-		System.out.println("Fecha test: " + dateTest.toString());
-		
 		if (rangoFechas == null || rangoFechas.size() < 2) {
 	        System.out.println("Errore: rangoFechas non valido o incompleto");
+	        System.out.println(rangoFechas);
 	        return;
 	    }
 		
