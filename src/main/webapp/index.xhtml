@@ -38,9 +38,6 @@
 			    </p:menubar>
 			</h:form>
 
-
-
-
 			
 		    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center;">
 		    	<!-- <h:outputText value="#{userSessionBean != null ? 'Bean found' : 'Bean not found'}" /><br />
@@ -70,7 +67,6 @@
 		                             style="margin: 10px;" />
 		        </div>
 		        
-		        <!-- Dialogo per il form di accesso -->
 			    <p:dialog id="loginDialog" widgetVar="dlg" modal="true" draggable="false" resizable="false" 
 			    	header="#{userSessionBean.rolTemporaneo eq 'propietario' ? text['acceso_prop'] : text['acceso_org']}">
 			        <h:form id="loginForm">
