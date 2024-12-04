@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <f:view locale="#{activeLocale.actual}">
+		<h:head>
+		    <meta charset="utf-8" />
+		    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		    <title>Area Organizador - EventosZorzi</title>
+		    <f:event type="preRenderView" listener="#{userSessionBean.authorize('organizador')}" />
+		</h:head>
+		<h:body>
+		    <div>
+		        <h:form id="navbarForm" style="margin-bottom: 15px;">
+				    <p:menubar>
+				        <!-- Logo -->
+				        <p:menuitem value="EventosZorzi" style="font-weight: bold; font-size: 20px;" outcome="index" />
+				
+				        <!-- Dropdown seleccion idioma -->
+				        <p:menuitem>
+				            <p:selectOneMenu id="languageMenu" value="#{activeLocale.languageTag}">
+				                <f:selectItems value="#{activeLocale.localesDisponibles}" var="l"
+				                    itemValue="#{l.toLanguageTag()}"
+				                    itemLabel="#{l.getDisplayLanguage(l)}">
+				                </f:selectItems>
+				                <f:ajax listener="#{activeLocale.reload}" render="@form" />
+				            </p:selectOneMenu>
+				        </p:menuitem>
+				
+				        <!-- Muestra el rol actual -->
+				        <p:menuitem style="margin-left: auto; pointer-events: none; color: gray;" 
+				                    value="#{text.Rol}: #{userSessionBean.rolTemporaneo eq null ? 'null' : userSessionBean.rolTemporaneo}" />
+				                    
+				        <!-- Pagina para volver a la busqueda de espacios -->
+				        <p:menuitem value="#{text.BusEsp}" outcome="area_organizador" />
+				
+				        <!-- Pulsador Logout -->
+				        <p:menuitem value="Logout" 
+				                    action="#{userSessionBean.logout()}" 
+				                    style="color: red;" />
+				    </p:menubar>
+				</h:form>
+				
+		        <h:outputText value="#{text.eventos_org}."
+		        	styleClass="ui-widget ui-widget-header" 
+		        	style="font-size: 2em; font-weight: bold; padding: 15px;"/>
+		        
+		        <h:form id="eventos" style="margin: 20px 2px 0px 2px;">
+		        	
+			        <p:dataTable id="tablaEventos" var="evento" value="#{organizadorBean.getEventosByOrganizador(userSessionBean.nombre)}">
+			            <p:column headerText="#{text.Nombre}">
+			                <h:outputText value="#{evento.nombre}" />
+			            </p:column>
+			            
+			            <p:column headerText="#{text.Descripcion}">
+			            	<h:outputText value="#{evento.descripcion}" />
+			            </p:column>
+			            
+			            <p:column headerText="#{text.Organizador}">
+			            	<h:outputText value="#{evento.organizador}" />
+			            </p:column>
+			            
+			            <p:column headerText="#{text.Plazas}">
+			                <h:outputText value="#{evento.plazas}" />
+			            </p:column>
+			        </p:dataTable>
+				</h:form>
+		    </div>
+		</h:body>
+	</f:view>
+</html>

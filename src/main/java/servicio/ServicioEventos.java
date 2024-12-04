@@ -1,11 +1,14 @@
 package servicio;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import dto.EspacioFisicoDTO;
+import dto.EventoDTO;
 import modelo.EspacioFisico;
 import modelo.Evento;
 import modelo.Ocupacion;
@@ -121,6 +124,33 @@ public class ServicioEventos implements IServicioEventos {
 		return resultado;
 	}
 	
+	@Override
+	public List<EventoDTO> getAll() throws RepositorioException {
+		
+		List<Evento> all = repositorioEventos.getAll();
+		
+		List<EventoDTO> allDto = new ArrayList<EventoDTO>();
+		
+		for (Evento e : all)
+		{
+			allDto.add(transformToDTO(e));
+		}
+		
+		return allDto;
+	}
 	
+	@Override
+	public List<EventoDTO> getByOrganizer(String organizador) throws RepositorioException {
+		
+		return getAll().stream().filter(evento -> organizador.equals(evento.getOrganizador())).collect(Collectors.toList());
+		
+	}
+	
+	private EventoDTO transformToDTO(Evento e)
+	{
+		EventoDTO eventoDTO = new EventoDTO(e.getId(), e.getNombre(), e.getDescripcion(), e.getOrganizador(), e.getPlazas());
+		
+		return eventoDTO;
+	}
 
 }

@@ -12,6 +12,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import dto.EspacioFisicoDTO;
+import dto.EventoDTO;
 import repositorio.EntidadNoEncontrada;
 import repositorio.RepositorioException;
 import servicio.FactoriaServicios;
@@ -47,6 +48,7 @@ public class OrganizadorBean implements Serializable {
 		servicioEventos = FactoriaServicios.getServicio(IServicioEventos.class);
 		
 		capacidadMinima = 1.;
+		tmpPlazas = 1.;
 		categorias = Arrays.asList(Categoria.values());
 	}
 
@@ -75,6 +77,12 @@ public class OrganizadorBean implements Serializable {
 	    /*
 	     * Lo spazio si occupa per tutto il giorno in modo tale da permettere agli organizzatori di praparare e poi smantellare l'evento
 	     */
+	}
+	
+	public List<EventoDTO> getEventosByOrganizador(String organizador) throws RepositorioException {
+		
+		return servicioEventos.getByOrganizer(organizador);
+		
 	}
 	
 	public void onDateSelect() {
