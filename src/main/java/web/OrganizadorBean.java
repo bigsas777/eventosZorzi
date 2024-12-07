@@ -68,15 +68,13 @@ public class OrganizadorBean implements Serializable {
 	    }
 		
 		if (rangoFechas == null || rangoFechas.size() < 2) {
-	        System.out.println("Errore: rangoFechas non valido o incompleto");
+	        System.out.println("Error en rangoFechas");
 	        System.out.println(rangoFechas);
 	        return;
 	    }
 	    
-	    espaciosDisponibles = servicioEspacios.busqueda(rangoFechas.get(0).atStartOfDay(), rangoFechas.get(1).atStartOfDay(), capacidadMinima.intValue());
-	    /*
-	     * Lo spazio si occupa per tutto il giorno in modo tale da permettere agli organizzatori di praparare e poi smantellare l'evento
-	     */
+	    espaciosDisponibles = servicioEspacios.busqueda(rangoFechas.get(0).atStartOfDay(),
+	    												rangoFechas.get(1).atStartOfDay(), capacidadMinima.intValue());
 	}
 	
 	public List<EventoDTO> getEventosByOrganizador(String organizador) throws RepositorioException {

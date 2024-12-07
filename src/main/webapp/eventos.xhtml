@@ -42,12 +42,13 @@
 				    </p:menubar>
 				</h:form>
 				
+				<!-- Titolo pagina -->
 		        <h:outputText value="#{text.eventos_org}."
 		        	styleClass="ui-widget ui-widget-header" 
 		        	style="font-size: 2em; font-weight: bold; padding: 15px;"/>
 		        
+		        <!-- Tabla de los eventos -->
 		        <h:form id="eventos" style="margin: 20px 2px 0px 2px;">
-		        	
 			        <p:dataTable id="tablaEventos" var="evento" value="#{organizadorBean.getEventosByOrganizador(userSessionBean.nombre)}">
 			            <p:column headerText="#{text.Nombre}">
 			                <h:outputText value="#{evento.nombre}" />

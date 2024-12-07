@@ -13,10 +13,10 @@
 		
 			<h:form id="navbarForm" style="margin-bottom: 15px;">
 			    <p:menubar>
-			        <!-- Logo o titolo -->
+			        <!-- Logo -->
 			        <p:menuitem value="EventosZorzi" style="font-weight: bold; font-size: 20px;" outcome="index" />
 			
-			        <!-- Dropdown per la selezione della lingua -->
+			        <!-- Dropdown seleccion idioma -->
 			        <p:menuitem>
 			            <p:selectOneMenu id="languageMenu" value="#{activeLocale.languageTag}">
 			                <f:selectItems value="#{activeLocale.localesDisponibles}" var="l"
@@ -27,11 +27,11 @@
 			            </p:selectOneMenu>
 			        </p:menuitem>
 			
-			        <!-- Messaggio informativo sul ruolo -->
+			        <!-- Muestra el rol actual -->
 			        <p:menuitem style="margin-left: auto; pointer-events: none; color: gray;" 
 			                    value="#{text.Rol}: #{userSessionBean.rolTemporaneo eq null ? 'null' : userSessionBean.rolTemporaneo}" />
 			
-			        <!-- Pulsante Logout -->
+			        <!-- Pulsador Logout -->
 			        <p:menuitem value="Logout" 
 			                    action="#{userSessionBean.logout()}" 
 			                    style="color: red;" />
@@ -40,9 +40,8 @@
 
 			
 		    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; text-align: center;">
-		    	<!-- <h:outputText value="#{userSessionBean != null ? 'Bean found' : 'Bean not found'}" /><br />
-		    	<h:outputText id="displayRol" value="Rol: #{userSessionBean.rolTemporaneo}" />  -->
 			    
+			    <!-- Bienvenida -->
 			    <div style="background-color: rgba(255, 255, 255, 0.65); text-align: center; padding: 20px; border-radius: 6px;">
 		        	<h:outputText value="#{text.Bienvenida}!" 
 		        		styleClass="ui-widget ui-widget-header" 
@@ -52,6 +51,7 @@
 		        		style="font-weight: bold; color: #525252" />
 		        </div>
 		        
+		        <!-- Botones de acceso -->
 		        <div>
 		        	<p:commandButton value="#{text.acceso_prop}"
 		                             oncomplete="PF('dlg').show()"
@@ -67,6 +67,7 @@
 		                             style="margin: 10px;" />
 		        </div>
 		        
+		        <!-- Form de acceso -->
 			    <p:dialog id="loginDialog" widgetVar="dlg" modal="true" draggable="false" resizable="false" 
 			    	header="#{userSessionBean.rolTemporaneo eq 'propietario' ? text['acceso_prop'] : text['acceso_org']}">
 			        <h:form id="loginForm">

@@ -42,12 +42,13 @@
 				    </p:menubar>
 				</h:form>
 				
+				<!-- Bienvenida -->
 		        <h:outputText value="#{text.bienvenida_org}, #{userSessionBean.nombre}!"
 		        	styleClass="ui-widget ui-widget-header" 
 		        	style="font-size: 2em; font-weight: bold; padding: 15px;"/>
-		        
+		       
 		        <h:form id="espacios" style="margin: 20px 2px 0px 2px;">
-		        	
+		        	<!-- Panel de busqueda -->
 			        <div id="busqeda" style="margin: 20px 15px 10px 15px;">
 			        	<p:outputLabel for="range" value="#{text.Fechas}:" style="margin-right: 7px;" />
 			        	<p:datePicker id="range" selectionMode="range" value="#{organizadorBean.rangoFechas}" readonlyInput="true" 
@@ -59,7 +60,7 @@
 			        	
 			        	<p:commandButton value="#{text.Buscar}" icon="pi pi-search" action="#{organizadorBean.busquedaEspacios()}" update="tablaEspacios" />
 			        </div>
-		        	
+		        	<!-- Tabla de los resultados -->
 			        <p:dataTable id="tablaEspacios" var="espacio" value="#{organizadorBean.espaciosDisponibles}">
 			            <p:column headerText="#{text.Nombre}">
 			                <h:outputText value="#{espacio.nombre}" />
@@ -90,6 +91,7 @@
 			        </p:dataTable>
 				</h:form>
 				
+				<!-- Form de creaccion eventos -->
 				<p:dialog id="addEventoDialog" widgetVar="eventoDlg" modal="true" draggable="false" resizable="false" 
 			    	header="#{text.AddEvento}">
 			        <h:form id="addEventoForm">
@@ -98,9 +100,6 @@
 			            
 			            <h:outputLabel for="descripcion" value="#{text.Descripcion}:" /><br />
 			            <p:inputText id="descripcion" value="#{organizadorBean.tmpDescripcion}" /><br />
-			            
-			            <!-- <h:outputLabel for="plazas" value="#{text.Plazas}:" /><br />
-			            <p:inputNumber id="plazas" value="#{organizadorBean.tmpPlazas}" minValue="1" decimalPlaces="0" /><br /> -->
 			            
 			            <h:outputLabel for="primerDiaTime" value="#{text.PDT}:" /><br />
 			            <p:datePicker id="primerDiaTime" value="#{organizadorBean.primerDiaTime}" pattern="HH:mm" timeOnly="true" /><br />
