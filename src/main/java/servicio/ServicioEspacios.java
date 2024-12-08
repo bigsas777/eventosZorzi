@@ -119,9 +119,9 @@ public class ServicioEspacios implements IServicioEspacios {
 	}
 	
 	@Override
-	public List<EspacioFisicoDTO> getAll() throws RepositorioException {
+	public List<EspacioFisicoDTO> getByOwner(String propietario) throws RepositorioException {
 		
-		List<EspacioFisico> all = repositorio.getAll();
+		List<EspacioFisico> all = repositorio.getByPropietario(propietario);
 		
 		List<EspacioFisicoDTO> allDto = new ArrayList<EspacioFisicoDTO>();
 		
@@ -131,12 +131,6 @@ public class ServicioEspacios implements IServicioEspacios {
 		}
 		
 		return allDto;
-	}
-	
-	@Override
-	public List<EspacioFisicoDTO> getByOwner(String propietario) throws RepositorioException {
-		
-		return getAll().stream().filter(espacio -> propietario.equals(espacio.getPropietario())).collect(Collectors.toList());
 		
 	}
 	

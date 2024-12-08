@@ -49,5 +49,25 @@ public class RepositorioAdHocEspacioFisicoJPA extends RepositorioEspacioFisicoJP
             EntityManagerHelper.closeEntityManager();
         }
     }
+	
+	public List<EspacioFisico> getByPropietario(String propietario) throws RepositorioException {
+		
+		EntityManager em = EntityManagerHelper.getEntityManager();
+		
+		try {
+			
+			String queryString = "SELECT e FROM EspacioFisico e WHERE :propietario = e.propietario";
+			
+			Query query = em.createQuery(queryString);
+			query.setParameter("propietario", propietario);
+			
+			return query.getResultList();			
+		} catch (Exception e) {
+            throw new RepositorioException("Error al obtener eventos del mes", e);
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+		
+	}
 
 }

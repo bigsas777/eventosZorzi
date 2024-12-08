@@ -125,9 +125,9 @@ public class ServicioEventos implements IServicioEventos {
 	}
 	
 	@Override
-	public List<EventoDTO> getAll() throws RepositorioException {
+	public List<EventoDTO> getByOrganizer(String organizador) throws RepositorioException {
 		
-		List<Evento> all = repositorioEventos.getAll();
+		List<Evento> all = repositorioEventos.getByOrganizador(organizador);
 		
 		List<EventoDTO> allDto = new ArrayList<EventoDTO>();
 		
@@ -137,12 +137,6 @@ public class ServicioEventos implements IServicioEventos {
 		}
 		
 		return allDto;
-	}
-	
-	@Override
-	public List<EventoDTO> getByOrganizer(String organizador) throws RepositorioException {
-		
-		return getAll().stream().filter(evento -> organizador.equals(evento.getOrganizador())).collect(Collectors.toList());
 		
 	}
 	

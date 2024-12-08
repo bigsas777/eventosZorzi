@@ -26,5 +26,25 @@ public class RepositorioAdHocEventoJPA extends RepositorioEventoJPA implements R
             EntityManagerHelper.closeEntityManager();
         }
     }
+	
+	public List<Evento> getByOrganizador(String organizador) throws RepositorioException {
+		
+		EntityManager em = EntityManagerHelper.getEntityManager();
+		
+		try {
+			
+			String queryString = "SELECT e FROM Evento e WHERE :organizador = e.organizador";
+			
+			Query query = em.createQuery(queryString);
+			query.setParameter("organizador", organizador);
+			
+			return query.getResultList();			
+		} catch (Exception e) {
+            throw new RepositorioException("Error al obtener eventos del mes", e);
+        } finally {
+            EntityManagerHelper.closeEntityManager();
+        }
+		
+	}
 
 }

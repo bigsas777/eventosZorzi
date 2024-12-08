@@ -83,11 +83,6 @@ public class OrganizadorBean implements Serializable {
 		
 	}
 	
-	public void onDateSelect() {
-	    System.out.println("Date range selected: " + rangoFechas);
-	}
-
-	
 	public Double getCapacidadMinima() {
 		return capacidadMinima;
 	}

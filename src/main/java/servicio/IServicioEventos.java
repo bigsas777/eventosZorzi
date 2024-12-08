@@ -19,8 +19,6 @@ public interface IServicioEventos {
 	
 	List<EventoResumen> eventosDelMes(int mes, int año) throws RepositorioException;
 	
-	public List<EventoDTO> getAll() throws RepositorioException;
-	
 	public List<EventoDTO> getByOrganizer(String organizador) throws RepositorioException;
 
 }

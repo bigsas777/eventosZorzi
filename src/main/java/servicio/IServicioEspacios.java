@@ -23,8 +23,6 @@ public interface IServicioEspacios {
 	
 	List<EspacioFisicoDTO> busqueda(LocalDateTime inicio, LocalDateTime fin, int capacidadMinima) throws RepositorioException;
 	
-	public List<EspacioFisicoDTO> getAll() throws RepositorioException;
-	
 	public List<EspacioFisicoDTO> getByOwner(String propietario) throws RepositorioException;
 
 }
