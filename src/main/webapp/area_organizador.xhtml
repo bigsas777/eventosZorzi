@@ -85,7 +85,7 @@
 			            <p:column headerText="#{text.AddEvento}">
 			                <p:commandButton icon="pi pi-plus"
                              update="espacios" 
-                             action="#{organizadorBean.setTmpIdEsapcio(espacio.id)}"
+                             action="#{organizadorBean.selectedEspacioForEvent(espacio.id, espacio.capacidad)}"
                              oncomplete="PF('eventoDlg').show()" />
 			            </p:column>
 			        </p:dataTable>

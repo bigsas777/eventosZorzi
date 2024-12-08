@@ -41,6 +41,7 @@ public class OrganizadorBean implements Serializable {
 	private LocalTime primerDiaTime;
 	private LocalTime ultimoDiaTime;
 	private String tmpIdEsapcio;
+	private Double capacidadEsapcio;
 
 	public OrganizadorBean() {
 		servicioEspacios = FactoriaServicios.getServicio(IServicioEspacios.class);
@@ -55,7 +56,7 @@ public class OrganizadorBean implements Serializable {
 		LocalDateTime fechFin = rangoFechas.get(1).atTime(ultimoDiaTime);
 		
 		servicioEventos.alta(tmpNombreEvento, tmpDescripcion, userSessionBean.getNombre(), tmpCategoria,
-							fechaInicio, fechFin, capacidadMinima.intValue(), tmpIdEsapcio);
+							fechaInicio, fechFin, capacidadEsapcio.intValue(), tmpIdEsapcio);
 		
 	}
 	
@@ -79,6 +80,11 @@ public class OrganizadorBean implements Serializable {
 		
 		return servicioEventos.getByOrganizer(organizador);
 		
+	}
+	
+	public void selectedEspacioForEvent(String idEspacio, Double capacidad) {
+		setTmpIdEsapcio(idEspacio);
+		setCapacidadEsapcio(capacidad);
 	}
 	
 	public Double getCapacidadMinima() {
@@ -159,6 +165,14 @@ public class OrganizadorBean implements Serializable {
 
 	public void setTmpIdEsapcio(String tmpIdEsapcio) {
 		this.tmpIdEsapcio = tmpIdEsapcio;
+	}
+
+	public Double getCapacidadEsapcio() {
+		return capacidadEsapcio;
+	}
+
+	public void setCapacidadEsapcio(Double capacidadEsapcio) {
+		this.capacidadEsapcio = capacidadEsapcio;
 	}
 
 }
