@@ -148,7 +148,7 @@ public class ServicioEventos implements IServicioEventos {
 	
 	private EventoDTO transformToDTO(Evento e)
 	{
-		EventoDTO eventoDTO = new EventoDTO(e.getId(), e.getNombre(), e.getDescripcion(), e.getOrganizador(), e.getPlazas());
+		EventoDTO eventoDTO = new EventoDTO(e.getId(), e.getNombre(), e.getDescripcion(), e.getOrganizador(), e.getPlazas(), e.getCategoria());
 		
 		return eventoDTO;
 	}
