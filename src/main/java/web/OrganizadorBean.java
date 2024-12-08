@@ -36,7 +36,6 @@ public class OrganizadorBean implements Serializable {
 	private List<EspacioFisicoDTO> espaciosDisponibles;
 	private String tmpNombreEvento;
 	private String tmpDescripcion;
-	private Double tmpPlazas;
 	private Categoria tmpCategoria;
 	private List<Categoria> categorias;
 	private LocalTime primerDiaTime;
@@ -48,7 +47,6 @@ public class OrganizadorBean implements Serializable {
 		servicioEventos = FactoriaServicios.getServicio(IServicioEventos.class);
 		
 		capacidadMinima = 1.;
-		tmpPlazas = 1.;
 		categorias = Arrays.asList(Categoria.values());
 	}
 
@@ -57,7 +55,7 @@ public class OrganizadorBean implements Serializable {
 		LocalDateTime fechFin = rangoFechas.get(1).atTime(ultimoDiaTime);
 		
 		servicioEventos.alta(tmpNombreEvento, tmpDescripcion, userSessionBean.getNombre(), tmpCategoria,
-							fechaInicio, fechFin, tmpPlazas.intValue(), tmpIdEsapcio);
+							fechaInicio, fechFin, capacidadMinima.intValue(), tmpIdEsapcio);
 		
 	}
 	
@@ -121,14 +119,6 @@ public class OrganizadorBean implements Serializable {
 
 	public void setTmpDescripcion(String tmpDescripcion) {
 		this.tmpDescripcion = tmpDescripcion;
-	}
-
-	public Double getTmpPlazas() {
-		return tmpPlazas;
-	}
-
-	public void setTmpPlazas(Double tmpPlazas) {
-		this.tmpPlazas = tmpPlazas;
 	}
 
 	public Categoria getTmpCategoria() {
